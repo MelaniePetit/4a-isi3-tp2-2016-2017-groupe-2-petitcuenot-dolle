@@ -1,3 +1,9 @@
+package Graph;
+
+import Visiteur.InfixeVisiteur;
+import Visiteur.PostFixeVisiteur;
+import Visiteur.PrefixeVisiteur;
+
 public class ExpressionArithmetique {
 	private Noeud racine;
 	
@@ -11,8 +17,8 @@ public class ExpressionArithmetique {
 
 	public void afficherPostFixe() {
 		System.out.println("\n postfixe:");
-		// TODO 
-		
+		// TODO
+		racine.accept(new PostFixeVisiteur());
 	}
 
 	public int calculerValeur() {
@@ -24,10 +30,17 @@ public class ExpressionArithmetique {
 		// TODO 
 		return 0;
 	}
+
 	public void afficherInFixe() {
 		System.out.println("\n infixe:");
 		// TODO 
-		
+		racine.accept(new InfixeVisiteur());
+	}
+
+	public void afficherPreFixe() {
+		System.out.println("\n Prefixe:");
+		// TODO
+		racine.accept(new PrefixeVisiteur());
 	}
 	
 }

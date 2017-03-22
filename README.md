@@ -1,4 +1,4 @@
-# ISI 3 TP N°2 : Arbre et Design Pattern Visiteur
+# ISI 3 TP N°2 : Arbre et Design Pattern Visiteur.Visiteur
 Antoine Caron, Victor Lequay, Laëtitia Matignon
 
 >Le rapport est à saisir dans le ficher [RAPPORT.md](RAPPORT.md) en utilisant le [formalisme MarkDown](https://guides.github.com/features/mastering-markdown/)
@@ -18,15 +18,15 @@ Par exemple, l’expression arithmétique 1 + 2 × 3 + (−4) peut être représ
 ![expression](images/0001.jpg)
 
 On souhaite appliquer un ensemble d’opérations sur tous les éléments d’une expression arithmétique. Les implémentations de chaque opération seront spécifiques à chaque élément. 
-Pour réaliser cela, on va utiliser le *design pattern Visiteur*. 
+Pour réaliser cela, on va utiliser le *design pattern Visiteur.Visiteur*. 
 Ce pattern va permettre d’encapsuler les différentes opérations de traitement en dehors des classes spécifiques aux éléments et ainsi d’apporter de la souplesse pour l’ajout de nouvelles opérations.
 
 ![diagramme classe](images/diagclasseb.png)
 
 #### Question 1
 
-Complétez le diagramme de classe proposé de sorte à pouvoir appliquer le patron de conception *Visiteur*. 
-En particulier, une interface **Visiteur** permettra de visiter tous les éléments de l’arbre.
+Complétez le diagramme de classe proposé de sorte à pouvoir appliquer le patron de conception *Visiteur.Visiteur*. 
+En particulier, une interface **Visiteur.Visiteur** permettra de visiter tous les éléments de l’arbre.
 
 #### Question 2
 
@@ -43,22 +43,22 @@ partie droite du noeud et le noeud est scruté en dernier. Le parcours postfixe 
 
 #### Question 3
 
-Définissez, implémentez et testez un Visiteur pour afficher une expression en notation postfixe. 
+Définissez, implémentez et testez un Visiteur.Visiteur pour afficher une expression en notation postfixe. 
 Ce type de notation permet de se passer de parenthèses.
 
 #### Question 4
 
-Définissez, implémentez et testez un Visiteur pour calculer la valeur d’une expression arithmétique.
+Définissez, implémentez et testez un Visiteur.Visiteur pour calculer la valeur d’une expression arithmétique.
 
 La hauteur d’un arbre est la plus grande distance entre la racine de l’arbre et chacune de ses feuilles. 
 Ainsi, la hauteur de 2+x est 2 et celle de 7×(2+x) est 3.
 
 #### Question 5 
 
-Définissez, implémentez et testez un Visiteur pour calculer la hauteur de l’arbre d’une expression.
+Définissez, implémentez et testez un Visiteur.Visiteur pour calculer la hauteur de l’arbre d’une expression.
 
 #### Question 6 
 
-Définissez, implémentez et testez un Visiteur pour afficher une expression en notation infixe. 
+Définissez, implémentez et testez un Visiteur.Visiteur pour afficher une expression en notation infixe. 
 Il sera ici nécessaire d’utiliser des parenthèses si la priorité d’un nœud (en fait, celle de l’opérateur associé à ce nœud) est plus faible que la priorité du père de ce nœud (par exemple 7×(2+x)). 
 Le code de l’arbre binaire pourra être modifié pour cette question.
