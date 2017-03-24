@@ -4,35 +4,38 @@ import Graph.*;
 
 /**
  *
- * Created by jeremy on 22/03/2017.
+ * Created by jeremy on 24/03/2017.
  */
-public class InfixeVisiteur extends DefautVisiteur {
+public class ValeurVisiteur extends DefautVisiteur{
+    private StringBuilder stringBuilder = new StringBuilder();
 
     public void visiterNegation(Negation negation) {
-        System.out.print("(-");
+        stringBuilder.append("(-");
         negation.getOpG().accept(this);
-        System.out.print(")");
+        stringBuilder.append(")");
     }
 
     public void visiterAddition(Addition addition) {
         Noeud opG = addition.getOpG();
         Noeud opD = addition.getOpD();
         opG.accept(this);
-        System.out.print("+");
+        stringBuilder.append("+");
         opD.accept(this);
     }
 
     public void visiterMultiplication(Multiplication multiplication) {
         Noeud opG = multiplication.getOpG();
         Noeud opD = multiplication.getOpD();
-        System.out.print("(");
         opG.accept(this);
-        System.out.print("*");
+        stringBuilder.append("*");
         opD.accept(this);
-        System.out.print(")");
     }
 
     public void visiterConstante(Constante constante) {
-        System.out.print(constante.getValeur());
+        stringBuilder.append(constante.getValeur());
+    }
+
+    public StringBuilder getStringBuilder() {
+        return stringBuilder;
     }
 }

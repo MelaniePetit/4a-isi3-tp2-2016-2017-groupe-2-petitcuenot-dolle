@@ -19,7 +19,7 @@ public class DefautVisiteur implements Visiteur{
     }
 
     public void visiterConstante(Constante constante) {
-        System.out.println(constante.getValeur());
+        System.out.print(constante.getValeur());
     }
 
     public void visiterOperateurUnaire(OperateurUnaire operateurUnaire) {

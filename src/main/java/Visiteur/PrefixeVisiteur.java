@@ -9,12 +9,12 @@ import Graph.*;
 public class PrefixeVisiteur extends DefautVisiteur {
 
     public void visiterOperateurUnaire(OperateurUnaire operateurUnaire) {
-        System.out.println(operateurUnaire.getOp());
+        System.out.print(operateurUnaire.getOp());
         operateurUnaire.getOpG().accept(this);
     }
 
     public void visiterOperateurBinaire(OperateurBinaire operateurBinaire) {
-        System.out.println(operateurBinaire.getOp());
+        System.out.print(operateurBinaire.getOp());
         operateurBinaire.getOpG().accept(this);
         operateurBinaire.getOpD().accept(this);
     }

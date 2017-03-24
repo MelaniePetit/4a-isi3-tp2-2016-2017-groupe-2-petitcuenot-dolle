@@ -1,8 +1,8 @@
 package Graph;
 
-import Visiteur.InfixeVisiteur;
-import Visiteur.PostFixeVisiteur;
-import Visiteur.PrefixeVisiteur;
+import Visiteur.*;
+import bsh.EvalError;
+import bsh.Interpreter;
 
 public class ExpressionArithmetique {
 	private Noeud racine;
@@ -17,29 +17,28 @@ public class ExpressionArithmetique {
 
 	public void afficherPostFixe() {
 		System.out.println("\n postfixe:");
-		// TODO
 		racine.accept(new PostFixeVisiteur());
 	}
 
-	public int calculerValeur() {
-		// TODO 
-		return 0;
+	public int calculerValeur() throws EvalError {
+		ValeurVisiteur valeurVisiteur = new ValeurVisiteur();
+		racine.accept(valeurVisiteur);
+		return Integer.parseInt(String.valueOf(new Interpreter().eval(valeurVisiteur.getStringBuilder().toString())));
 	}
 
 	public int calculerHauteur() {
-		// TODO 
-		return 0;
+		HauteurVisiteur hauteurVisiteur = new HauteurVisiteur();
+		racine.accept(hauteurVisiteur);
+		return hauteurVisiteur.getHauteurMax();
 	}
 
 	public void afficherInFixe() {
 		System.out.println("\n infixe:");
-		// TODO 
 		racine.accept(new InfixeVisiteur());
 	}
 
 	public void afficherPreFixe() {
 		System.out.println("\n Prefixe:");
-		// TODO
 		racine.accept(new PrefixeVisiteur());
 	}
 	

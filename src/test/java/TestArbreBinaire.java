@@ -1,4 +1,5 @@
 import Graph.*;
+import bsh.EvalError;
 
 public class TestArbreBinaire {
 
@@ -19,7 +20,11 @@ public class TestArbreBinaire {
 
 		exp.afficherInFixe();
 
-		System.out.println("\n calcul valeur: " + exp.calculerValeur());
+		try {
+			System.out.println("\n calcul valeur: " + exp.calculerValeur());
+		} catch (EvalError evalError) {
+			evalError.printStackTrace();
+		}
 		System.out.println("\n calcul hauteur: " + exp.calculerHauteur());
 
 		exp.afficherPostFixe();

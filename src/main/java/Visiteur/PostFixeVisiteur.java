@@ -10,12 +10,12 @@ public class PostFixeVisiteur extends DefautVisiteur {
 
     public void visiterOperateurUnaire(OperateurUnaire operateurUnaire) {
         operateurUnaire.getOpG().accept(this);
-        System.out.println(operateurUnaire.getOp());
+        System.out.print(operateurUnaire.getOp());
     }
 
     public void visiterOperateurBinaire(OperateurBinaire operateurBinaire) {
         operateurBinaire.getOpG().accept(this);
         operateurBinaire.getOpD().accept(this);
-        System.out.println(operateurBinaire.getOp());
+        System.out.print(operateurBinaire.getOp());
     }
 }
