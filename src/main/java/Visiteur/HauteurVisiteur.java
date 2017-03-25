@@ -6,6 +6,7 @@ import Graph.Multiplication;
 import Graph.Negation;
 
 /**
+ *
  * Created by jeremy on 24/03/2017.
  */
 public class HauteurVisiteur extends DefautVisiteur {
