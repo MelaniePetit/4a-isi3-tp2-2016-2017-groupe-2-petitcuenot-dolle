@@ -17,16 +17,18 @@ public class InfixeVisiteur extends DefautVisiteur{
     }
 
     public void visiterOperateurBinaire(OperateurBinaire operateurBinaire) {
-        if (operateurBinaire.getPriorite()>=priorite)
+        if (operateurBinaire.getPriorite()>=priorite) {
             priorite = operateurBinaire.getPriorite();
-        else
+            operateurBinaire.getOpG().accept(this);
+            System.out.print(operateurBinaire.getOp());
+            operateurBinaire.getOpD().accept(this);
+        }
+        else {
             System.out.print("(");
-
-        operateurBinaire.getOpG().accept(this);
-        System.out.print(operateurBinaire.getOp());
-        operateurBinaire.getOpD().accept(this);
-
-        if (operateurBinaire.getPriorite()<priorite)
+            operateurBinaire.getOpG().accept(this);
+            System.out.print(operateurBinaire.getOp());
+            operateurBinaire.getOpD().accept(this);
             System.out.print(")");
+        }
     }
 }

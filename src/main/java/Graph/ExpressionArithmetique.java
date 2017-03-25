@@ -1,8 +1,6 @@
 package Graph;
 
 import Visiteur.*;
-import bsh.EvalError;
-import bsh.Interpreter;
 
 public class ExpressionArithmetique {
 	private Noeud racine;
@@ -20,10 +18,10 @@ public class ExpressionArithmetique {
 		racine.accept(new PostFixeVisiteur());
 	}
 
-	public int calculerValeur() throws EvalError {
+	public int calculerValeur() {
 		ValeurVisiteur valeurVisiteur = new ValeurVisiteur();
 		racine.accept(valeurVisiteur);
-		return Integer.parseInt(String.valueOf(new Interpreter().eval(valeurVisiteur.getStringBuilder().toString())));
+		return valeurVisiteur.getValeur();
 	}
 
 	public int calculerHauteur() {
