@@ -6,7 +6,7 @@ import Graph.*;
  *
  * Created by jeremy on 24/03/2017.
  */
-public class ValeurVisiteur extends DefautVisiteur{
+public class ValeurVisiteur implements Visiteur{
 
     private int valeur;
 

@@ -7,6 +7,7 @@ import Graph.*;
  * Created by jeremy on 22/03/2017.
  */
 public class DefautVisiteur implements Visiteur{
+
     public void visiterNegation(Negation negation) {
         visiterOperateurUnaire(negation);
     }

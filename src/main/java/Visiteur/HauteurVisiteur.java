@@ -9,7 +9,7 @@ import Graph.Negation;
  *
  * Created by jeremy on 24/03/2017.
  */
-public class HauteurVisiteur extends DefautVisiteur {
+public class HauteurVisiteur implements Visiteur {
 
     private int hauteur = 0;
     private int hauteurMax = 0;

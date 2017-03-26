@@ -15,7 +15,4 @@ public interface Visiteur {
 
     void visiterConstante(Constante constante);
 
-    void visiterOperateurUnaire(OperateurUnaire operateurUnaire);
-
-    void visiterOperateurBinaire(OperateurBinaire operateurBinaire);
 }
