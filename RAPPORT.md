@@ -14,21 +14,21 @@ _Design Pattern Iterator :_
 
 ## Question 2
 
-Les packages Graph et Visiteur ont été créés pour mieux organiser le code. Dans le package Graph se trouve les classes
+Les packages graph et visiteur ont été créés pour mieux organiser le code. Dans le package graph se trouve les classes
 relatives aux opérations et aux valeurs des noeuds.
     
-Dans chaque classe du package Graph, la méthode _accept(Visiteur visiteur)_ a été implémentée.
+Dans chaque classe du package graph, la méthode _accept(visiteur visiteur)_ a été implémentée.
 
 _Exemple avec la classe Addition :_
 ``` java 
-public void accept(Visiteur visiteur) {
+public void accept(visiteur visiteur) {
     visiteur.visiterAddition(this);
 }
 ```
 Nous avons créer la classe _DefautVisiteur_ qui implémente les méthodes communes aux classes InfixeVisiteur, PostFixeVisiteur,
 et PrefixeVisiteur
 ``` java
-public class DefautVisiteur implements Visiteur{
+public class DefautVisiteur implements visiteur{
     public void visiterNegation(Negation negation) {
         visiterOperateurUnaire(negation);
     }
@@ -118,7 +118,7 @@ public void afficherPostFixe() {
 Pour calculer l'expression arithmétique, on crée une nouvelle classe _ValeurVisiteur_ qui va se charger du calcul.
 
 ``` java
-public class ValeurVisiteur implements Visiteur{
+public class ValeurVisiteur implements visiteur{
 
     private int valeur;
 
@@ -158,7 +158,7 @@ peu notre uml ainsi que notre interface :
 
 ![uml4](images/uml-4.png)
 ``` java
-public interface Visiteur {
+public interface visiteur {
 
     void visiterNegation(Negation negation);
 
@@ -175,7 +175,7 @@ public interface Visiteur {
 Pour calculer la hauteur de l'arbre, nous avons créé une nouvelle classe _HauteurVisiteur_ qui est implémentée
 par l'interface _Visiteur_.
 ``` java
-public class HauteurVisiteur implements Visiteur {
+public class HauteurVisiteur implements visiteur {
 
     private int hauteur = 0;
     private int hauteurMax = 0;
@@ -212,7 +212,7 @@ public class HauteurVisiteur implements Visiteur {
     }
 }
 ```   
-Ainsi la partie Visiteur de notre uml a la forme suivante :
+Ainsi la partie visiteur de notre uml a la forme suivante :
 
 ![uml5](images/uml-5.png)
    
@@ -271,6 +271,6 @@ public class InfixeVisiteur extends DefautVisiteur{
     }
 }
 ```    
-Ainsi la partie Visiteur finale de notre uml a la forme suivante :
+Ainsi la partie visiteur finale de notre uml a la forme suivante :
 
 ![uml6](images/uml-6.png)

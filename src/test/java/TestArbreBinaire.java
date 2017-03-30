@@ -1,4 +1,4 @@
-import Graph.*;
+import graph.*;
 
 public class TestArbreBinaire {
 
