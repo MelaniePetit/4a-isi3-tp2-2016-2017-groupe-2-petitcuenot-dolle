@@ -1,47 +1,41 @@
-package Visiteur;
+package visiteurs;
 
-import Graph.Addition;
-import Graph.Constante;
-import Graph.Multiplication;
-import Graph.Negation;
+import graphes.*;
 
 /**
  *
  * Created by jeremy on 24/03/2017.
  */
-public class HauteurVisiteur implements Visiteur {
+public class ValeurVisiteur implements Visiteur{
 
-    private int hauteur = 0;
-    private int hauteurMax = 0;
+    private int valeur;
 
     public void visiterNegation(Negation negation) {
-        hauteur ++;
         negation.getOpG().accept(this);
-        hauteur --;
+        valeur *= -1;
     }
 
     public void visiterAddition(Addition addition) {
-        hauteur ++;
         addition.getOpG().accept(this);
+        int valeurOpG = valeur;
         addition.getOpD().accept(this);
-        hauteur --;
+        int valeurOpD = valeur;
+        valeur = valeurOpG + valeurOpD;
     }
 
     public void visiterMultiplication(Multiplication multiplication) {
-        hauteur++;
         multiplication.getOpG().accept(this);
+        int valeurOpG = valeur;
         multiplication.getOpD().accept(this);
-        hauteur --;
+        int valeurOpD = valeur;
+        valeur = valeurOpG * valeurOpD;
     }
 
     public void visiterConstante(Constante constante) {
-        hauteur++;
-        if (hauteurMax<hauteur)
-            hauteurMax = hauteur;
-        hauteur--;
+        valeur = constante.getValeur();
     }
 
-    public int getHauteurMax() {
-        return hauteurMax;
+    public int getValeur() {
+        return valeur;
     }
 }

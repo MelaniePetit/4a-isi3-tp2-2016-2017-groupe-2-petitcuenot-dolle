@@ -1,4 +1,4 @@
-package Graph;
+package graphes;
 
 public abstract class OperateurBinaire  extends OperateurUnaire{
 

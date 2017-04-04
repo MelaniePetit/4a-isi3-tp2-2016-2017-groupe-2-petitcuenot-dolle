@@ -1,6 +1,6 @@
-package Visiteur;
+package visiteurs;
 
-import Graph.*;
+import graphes.*;
 
 /**
  *

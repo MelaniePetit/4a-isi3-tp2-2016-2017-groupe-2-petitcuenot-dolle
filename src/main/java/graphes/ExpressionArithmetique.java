@@ -1,6 +1,6 @@
-package Graph;
+package graphes;
 
-import Visiteur.*;
+import visiteurs.*;
 
 public class ExpressionArithmetique {
 	private Noeud racine;

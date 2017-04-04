@@ -1,6 +1,6 @@
-package Visiteur;
+package visiteurs;
 
-import Graph.*;
+import graphes.*;
 
 /**
  * Created by jeremy on 22/03/2017.

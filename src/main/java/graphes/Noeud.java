@@ -1,6 +1,6 @@
-package Graph;
+package graphes;
 
-import Visiteur.Visiteur;
+import visiteurs.Visiteur;
 
 public interface Noeud {
     abstract void accept(Visiteur visiteur);

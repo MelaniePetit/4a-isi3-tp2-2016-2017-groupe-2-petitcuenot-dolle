@@ -1,6 +1,7 @@
-package Visiteur;
+package visiteurs;
 
-import Graph.*;
+import graphes.Negation;
+import graphes.OperateurBinaire;
 
 /**
  *

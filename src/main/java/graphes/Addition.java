@@ -1,6 +1,6 @@
-package Graph;
+package graphes;
 
-import Visiteur.Visiteur;
+import visiteurs.Visiteur;
 
 public class Addition extends OperateurBinaire{
 	public Addition(Noeud ng, Noeud nd) {

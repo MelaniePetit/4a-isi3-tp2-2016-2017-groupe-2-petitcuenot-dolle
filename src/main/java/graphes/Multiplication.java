@@ -1,6 +1,6 @@
-package Graph;
+package graphes;
 
-import Visiteur.Visiteur;
+import visiteurs.Visiteur;
 
 public class Multiplication extends OperateurBinaire{
 

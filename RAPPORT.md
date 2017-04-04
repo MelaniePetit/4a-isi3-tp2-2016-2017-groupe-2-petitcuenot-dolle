@@ -14,205 +14,212 @@ _Design Pattern Iterator :_
 
 ## Question 2
 
-Les packages graph et visiteur ont été créés pour mieux organiser le code. Dans le package graph se trouve les classes
+Les packages Graph et visiteurs ont été créés pour mieux organiser le code. Dans le package Graph se trouve les classes
 relatives aux opérations et aux valeurs des noeuds.
     
-Dans chaque classe du package graph, la méthode _accept(visiteur visiteur)_ a été implémentée.
+Dans chaque classe du package Graph, la méthode _accept(visiteurs visiteurs)_ a été implémentée.
 
 _Exemple avec la classe Addition :_
-``` java 
-public void accept(visiteur visiteur) {
-    visiteur.visiterAddition(this);
-}
-```
+
+```java
+	public void accept(visiteurs visiteurs) {
+		visiteurs.visiterAddition(this);
+	}
+```    
+
 Nous avons créer la classe _DefautVisiteur_ qui implémente les méthodes communes aux classes InfixeVisiteur, PostFixeVisiteur,
 et PrefixeVisiteur
-``` java
-public class DefautVisiteur implements visiteur{
-    public void visiterNegation(Negation negation) {
-        visiterOperateurUnaire(negation);
+
+```java
+    public class DefautVisiteur implements visiteurs{
+        public void visiterNegation(Negation negation) {
+            visiterOperateurUnaire(negation);
+        }
+    
+        public void visiterAddition(Addition addition) {
+            visiterOperateurBinaire(addition);
+        }
+    
+        public void visiterMultiplication(Multiplication multiplication) {
+            visiterOperateurBinaire(multiplication);
+        }
+    
+        public void visiterConstante(Constante constante) {
+            System.out.println(constante.getValeur());
+        }
+    
+        public void visiterOperateurUnaire(OperateurUnaire operateurUnaire) {
+    
+        }
+    
+        public void visiterOperateurBinaire(OperateurBinaire operateurBinaire) {
+    
+        }
     }
-
-    public void visiterAddition(Addition addition) {
-        visiterOperateurBinaire(addition);
-    }
-
-    public void visiterMultiplication(Multiplication multiplication) {
-        visiterOperateurBinaire(multiplication);
-    }
-
-    public void visiterConstante(Constante constante) {
-        System.out.println(constante.getValeur());
-    }
-
-    public void visiterOperateurUnaire(OperateurUnaire operateurUnaire) {
-
-    }
-
-    public void visiterOperateurBinaire(OperateurBinaire operateurBinaire) {
-
-    }
-}
-```
+```    
 
 Alors, il ne reste plus qu'à implementer les méthodes _visiterOperateurUnaire(OperateurUnaire operateurUnaire)_ et 
 _visiterOperateurBinaire(OperateurBinaire operateurBinaire)_ dans les trois classes précédemment citées.
 
 _InfixeVisiteur :_
-``` java
-public void visiterOperateurUnaire(OperateurUnaire operateurUnaire) {
-    operateurUnaire.getOpG().accept(this);
-    System.out.println(operateurUnaire.getOp());
-}
 
-public void visiterOperateurBinaire(OperateurBinaire operateurBinaire) {
-    operateurBinaire.getOpG().accept(this);
-    System.out.println(operateurBinaire.getOp());
-    operateurBinaire.getOpD().accept(this);
-}
-```
+```java
+    public void visiterOperateurUnaire(OperateurUnaire operateurUnaire) {
+        operateurUnaire.getOpG().accept(this);
+        System.out.println(operateurUnaire.getOp());
+    }
+
+    public void visiterOperateurBinaire(OperateurBinaire operateurBinaire) {
+        operateurBinaire.getOpG().accept(this);
+        System.out.println(operateurBinaire.getOp());
+        operateurBinaire.getOpD().accept(this);
+    }
+```    
+
 _PostFixeVisiteur :_
 
-``` java
-public void visiterOperateurUnaire(OperateurUnaire operateurUnaire) {
-    operateurUnaire.getOpG().accept(this);
-    System.out.println(operateurUnaire.getOp());
-}
+```java
+    public void visiterOperateurUnaire(OperateurUnaire operateurUnaire) {
+        operateurUnaire.getOpG().accept(this);
+        System.out.println(operateurUnaire.getOp());
+    }
 
-public void visiterOperateurBinaire(OperateurBinaire operateurBinaire) {
-    operateurBinaire.getOpG().accept(this);
-    operateurBinaire.getOpD().accept(this);
-    System.out.println(operateurBinaire.getOp());
-}
-```
+    public void visiterOperateurBinaire(OperateurBinaire operateurBinaire) {
+        operateurBinaire.getOpG().accept(this);
+        operateurBinaire.getOpD().accept(this);
+        System.out.println(operateurBinaire.getOp());
+    }
+```    
 
 _PrefixeVisiteur :_
- 
-``` java
-public void visiterOperateurUnaire(OperateurUnaire operateurUnaire) {
-    System.out.println(operateurUnaire.getOp());
-    operateurUnaire.getOpG().accept(this);
-}
+  
+```java
+    public void visiterOperateurUnaire(OperateurUnaire operateurUnaire) {
+        System.out.println(operateurUnaire.getOp());
+        operateurUnaire.getOpG().accept(this);
+    }
 
-public void visiterOperateurBinaire(OperateurBinaire operateurBinaire) {
-    System.out.println(operateurBinaire.getOp());
-    operateurBinaire.getOpG().accept(this);
-    operateurBinaire.getOpD().accept(this);
-}
-```
+    public void visiterOperateurBinaire(OperateurBinaire operateurBinaire) {
+        System.out.println(operateurBinaire.getOp());
+        operateurBinaire.getOpG().accept(this);
+        operateurBinaire.getOpD().accept(this);
+    }
+```    
 
 ## Question 3
 
 Le détail des méthodes a été explicité dans les question précédentes. On rajoute seuelement le code suivant 
 dans la classe _ExpressionArithmétique_ afin de lancer le processus et d'obtenir le résultat. 
 
-``` java
-public void afficherPostFixe() {
-    System.out.println("\n postfixe:");
-    racine.accept(new PostFixeVisiteur());
-}
-```
+```java
+	public void afficherPostFixe() {
+		System.out.println("\n postfixe:");
+		racine.accept(new PostFixeVisiteur());
+	}
+```    
 
 ## Question 4
 
 Pour calculer l'expression arithmétique, on crée une nouvelle classe _ValeurVisiteur_ qui va se charger du calcul.
 
-``` java
-public class ValeurVisiteur implements visiteur{
+```java
+    public class ValeurVisiteur implements visiteurs{
 
-    private int valeur;
-
-    public void visiterNegation(Negation negation) {
-        negation.getOpG().accept(this);
-        valeur *= -1;
+        private int valeur;
+    
+        public void visiterNegation(Negation negation) {
+            negation.getOpG().accept(this);
+            valeur *= -1;
+        }
+    
+        public void visiterAddition(Addition addition) {
+            addition.getOpG().accept(this);
+            int valeurOpG = valeur;
+            addition.getOpD().accept(this);
+            int valeurOpD = valeur;
+            valeur = valeurOpG + valeurOpD;
+        }
+    
+        public void visiterMultiplication(Multiplication multiplication) {
+            multiplication.getOpG().accept(this);
+            int valeurOpG = valeur;
+            multiplication.getOpD().accept(this);
+            int valeurOpD = valeur;
+            valeur = valeurOpG * valeurOpD;
+        }
+    
+        public void visiterConstante(Constante constante) {
+            valeur = constante.getValeur();
+        }
+    
+        public int getValeur() {
+            return valeur;
+        }
     }
-
-    public void visiterAddition(Addition addition) {
-        addition.getOpG().accept(this);
-        int valeurOpG = valeur;
-        addition.getOpD().accept(this);
-        int valeurOpD = valeur;
-        valeur = valeurOpG + valeurOpD;
-    }
-
-    public void visiterMultiplication(Multiplication multiplication) {
-        multiplication.getOpG().accept(this);
-        int valeurOpG = valeur;
-        multiplication.getOpD().accept(this);
-        int valeurOpD = valeur;
-        valeur = valeurOpG * valeurOpD;
-    }
-
-    public void visiterConstante(Constante constante) {
-        valeur = constante.getValeur();
-    }
-
-    public int getValeur() {
-        return valeur;
-    }
-}
-```
+```    
 
 Nous avons décidé que cette classe serait implémentée par l'interface _Visiteur_. Pour ce faire, nous avons dû modifier quelque
 peu notre uml ainsi que notre interface :
 
 ![uml4](images/uml-4.png)
-``` java
-public interface visiteur {
 
-    void visiterNegation(Negation negation);
+```java
+    public interface visiteurs {
+        void visiterNegation(Negation negation);
+    
+        void visiterAddition(Addition addition);
+    
+        void visiterMultiplication(Multiplication multiplication);
+    
+        void visiterConstante(Constante constante);
+    }
+```    
 
-    void visiterAddition(Addition addition);
-
-    void visiterMultiplication(Multiplication multiplication);
-
-    void visiterConstante(Constante constante);
-
-}
-```
 ## Question 5
 
 Pour calculer la hauteur de l'arbre, nous avons créé une nouvelle classe _HauteurVisiteur_ qui est implémentée
 par l'interface _Visiteur_.
-``` java
-public class HauteurVisiteur implements visiteur {
 
-    private int hauteur = 0;
-    private int hauteurMax = 0;
-
-    public void visiterNegation(Negation negation) {
-        hauteur ++;
-        negation.getOpG().accept(this);
-        hauteur --;
+```java
+    public class HauteurVisiteur implements visiteurs {
+    
+        private int hauteur = 0;
+        private int hauteurMax = 0;
+    
+        public void visiterNegation(Negation negation) {
+            hauteur ++;
+            negation.getOpG().accept(this);
+            hauteur --;
+        }
+    
+        public void visiterAddition(Addition addition) {
+            hauteur ++;
+            addition.getOpG().accept(this);
+            addition.getOpD().accept(this);
+            hauteur --;
+        }
+    
+        public void visiterMultiplication(Multiplication multiplication) {
+            hauteur++;
+            multiplication.getOpG().accept(this);
+            multiplication.getOpD().accept(this);
+            hauteur --;
+        }
+    
+        public void visiterConstante(Constante constante) {
+            hauteur++;
+            if (hauteurMax<hauteur)
+                hauteurMax = hauteur;
+            hauteur--;
+        }
+    
+        public int getHauteurMax() {
+            return hauteurMax;
+        }
     }
+    ```    
 
-    public void visiterAddition(Addition addition) {
-        hauteur ++;
-        addition.getOpG().accept(this);
-        addition.getOpD().accept(this);
-        hauteur --;
-    }
-
-    public void visiterMultiplication(Multiplication multiplication) {
-        hauteur++;
-        multiplication.getOpG().accept(this);
-        multiplication.getOpD().accept(this);
-        hauteur --;
-    }
-
-    public void visiterConstante(Constante constante) {
-        hauteur++;
-        if (hauteurMax<hauteur)
-            hauteurMax = hauteur;
-        hauteur--;
-    }
-
-    public int getHauteurMax() {
-        return hauteurMax;
-    }
-}
-```   
-Ainsi la partie visiteur de notre uml a la forme suivante :
+Ainsi la partie visiteurs de notre uml a la forme suivante :
 
 ![uml5](images/uml-5.png)
    
@@ -223,54 +230,58 @@ Tout d'abord, on rajoute  la notion de priorité dans la classe _OperateurBinair
 de cette notion. Ainsi, l'addition possède maintenant une priorité de 1 tandis que la multiplication une priorité de 2.
 
 On crée un deuxième constructeur dans la classe _OperateurBinaire_ :
-``` java
-public OperateurBinaire(String s, Noeud n, Noeud opD, int priorite) {
-    super(s, n);
-    this.opD = opD;
-    this.priorite = priorite;
-}
-```
+
+```java
+       public OperateurBinaire(String s, Noeud n, Noeud opD, int priorite) {
+       		super(s, n);
+       		this.opD = opD;
+       		this.priorite = priorite;
+       	}
+```    
+
 On modifie les constructeurs des classes _Addition_ et _Multiplication_
-``` java      
-public Addition(Noeud ng, Noeud nd) {
-    super("+", ng, nd,1);
-}
+```java
+       public Addition(Noeud ng, Noeud nd) {
+            super("+", ng, nd,1);
+       }
+    
+        
+       public Multiplication( Noeud ng, Noeud nd) {
+            super("*", ng, nd,2);
+       }
+```    
 
-
-public Multiplication( Noeud ng, Noeud nd) {
-    super("*", ng, nd,2);
-}
-```       
 Enfin, on redéfinie les méthodes de la classe _Infixe_ pour qu'elle prenne en compte les règles de priorités
 et ajoute les parenthèses quand cela est nécessaire.
-``` java
-public class InfixeVisiteur extends DefautVisiteur{
 
-    private int priorite = 1;
-
-    public void visiterNegation(Negation negation) {
-        System.out.print("(-");
-        negation.getOpG().accept(this);
-        System.out.print(")");
-    }
-
-    public void visiterOperateurBinaire(OperateurBinaire operateurBinaire) {
-        if (operateurBinaire.getPriorite()>=priorite) {
-            priorite = operateurBinaire.getPriorite();
-            operateurBinaire.getOpG().accept(this);
-            System.out.print(operateurBinaire.getOp());
-            operateurBinaire.getOpD().accept(this);
-        }
-        else {
-            System.out.print("(");
-            operateurBinaire.getOpG().accept(this);
-            System.out.print(operateurBinaire.getOp());
-            operateurBinaire.getOpD().accept(this);
+```java
+    public class InfixeVisiteur extends DefautVisiteur{
+    
+        private int priorite = 1;
+    
+        public void visiterNegation(Negation negation) {
+            System.out.print("(-");
+            negation.getOpG().accept(this);
             System.out.print(")");
         }
+    
+        public void visiterOperateurBinaire(OperateurBinaire operateurBinaire) {
+            if (operateurBinaire.getPriorite()>=priorite) {
+                priorite = operateurBinaire.getPriorite();
+                operateurBinaire.getOpG().accept(this);
+                System.out.print(operateurBinaire.getOp());
+                operateurBinaire.getOpD().accept(this);
+            }
+            else {
+                System.out.print("(");
+                operateurBinaire.getOpG().accept(this);
+                System.out.print(operateurBinaire.getOp());
+                operateurBinaire.getOpD().accept(this);
+                System.out.print(")");
+            }
+        }
     }
-}
 ```    
-Ainsi la partie visiteur finale de notre uml a la forme suivante :
+Ainsi la partie visiteurs finale de notre uml a la forme suivante :
 
 ![uml6](images/uml-6.png)
